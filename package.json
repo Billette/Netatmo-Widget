@@ -21,7 +21,9 @@
   "dependencies": {
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "node": "^13.10.1"
+    "node": "^13.10.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
   },
   "devDependencies": {
     "@types/node": "^13.9.0",
