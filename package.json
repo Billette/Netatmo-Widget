@@ -1,0 +1,32 @@
+{
+  "name": "netatmo-widget",
+  "version": "1.0.0",
+  "description": "Netatmo Widget for Technical Test Internship",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/ts-node src/index.ts",
+    "dev": "./node_modules/.bin/nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Billette/Netatmo-Widget.git"
+  },
+  "author": "maxime billette",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Billette/Netatmo-Widget/issues"
+  },
+  "homepage": "https://github.com/Billette/Netatmo-Widget#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "node": "^13.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "^13.9.0",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  }
+}
