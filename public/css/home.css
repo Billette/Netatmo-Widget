@@ -1,5 +1,52 @@
-h1 {
-    color: darkgoldenrod;
+
+.navbar-default {
     background-color: rgb(255, 255, 255);
+    border-color: rgba(255, 136, 0, 0.6);
+    margin-left: -2vw;
+    margin-right: -2vw;
+    margin-bottom: 2vh;
+}
+
+.navbar-default .navbar-brand {
+    color: rgb(0, 0, 65);
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: rgb(0, 0, 65);
+}
+
+.btn-default {
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 153, 0);
+    font-weight: bold;
+}
+
+.btn-default:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(210, 125, 0);
+}
+
+.btn-default:focus{
+    color: rgb(255, 255, 255);
+    background-color: rgb(230, 140, 0);
+}
+
+.sidebar {
+    margin-top: 5vh;
+    margin-left: 2vw;
+    min-width: 15vw;
+    max-width: 50vw;
+    font-family: IBM Plex Sans,sans-serif;
+    font-size: 1.145rem;
+}
+.sidebar .sidebar-header {
+    margin-top: 10px;
     text-align: center;
+    color: rgb(0, 0, 65);
+    background-color: rgb(185, 217, 255);
+}
+
+.sidebar .sidebar-title {
+    font-size: 1.4rem;
 }

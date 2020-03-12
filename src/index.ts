@@ -1,6 +1,7 @@
 import express = require('express');
 import path = require('path');
 import {RequestHandler} from './api/netatmo'
+import {WeatherInfos} from './infos'
 
 // We will use an Express App, on port 8080 by default
 const app = express()
@@ -20,23 +21,18 @@ app.set('view engine', 'ejs');
 
 // We render the homepage when getting the URL
 app.get('/', (req: any, res: any) => {
-    res.render('home.ejs');
-    requestHandler.LoadParisWeather( (err: Error, result: any) => {
+
+    requestHandler.ParseData((err: Error, allInfos: WeatherInfos[]) => {
         if(err)
-            return console.log('Error while loading data')
-        else {
-            var measures = result.body[0].measures
-
-            //console.log(measures['02:00:00:2c:80:a8'])
-            for (var key in measures) {
-                if (measures.hasOwnProperty(key)) {
-                    console.log(key + " -> " + measures[key]);
-                }
-            }
-
-            console.log('Paris informations loaded')
+        {
+            console.error('Error while parsing data')
+            res.status(400).send('Data could not be loaded');
+        } else if(allInfos === []){
+            console.error("Unable to find any weather informations");
+            res.render('home.ejs', {infos: []})
+        } else {
+            res.render('home.ejs', {infos: allInfos})
         }
-        
     })
 })
 

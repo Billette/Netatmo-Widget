@@ -9,7 +9,46 @@
 </head>
 
 <body>
-   <h1> Welcome to Netatmo App </h1>
+    <div class="container-fluid">
+        <nav class="navbar navbar-default flex-lg-nowrap shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0" href="/"> 
+            <img alt="logo-netatmo" src="https://upload.wikimedia.org/wikipedia/fr/e/e9/Logo_netatmo_2020.png" height="60px" width="145px"/> 
+        </a>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/">Sign out</a>
+          </li>
+        </ul>
+        </nav>
+
+        <div class="row">
+            <nav class="col-md-2 bg-light sidebar rounded border border-primary">
+                <div class="sidebar-header rounded border border-primary">
+                    <span class="sidebar-title ">Cities</span>
+                </div>
+                <ul class="nav flex-column">
+                    <% for (var i = 0; i < infos.length; i++) { %>
+                        <li class="nav-item">
+                            <a class="nav-link active">
+                                <button type="button" class="btn btn-default"><%= infos[i].city %></button>
+                            </a>
+                        </li>
+                    <% } %>
+                </ul>
+ 
+            </nav> 
+        </div>
+
+    </div>
+
 </body>
 
 </html>
+
+<!--
+<% for (var i = 0; i < infos.length; i++) { %>
+    <h2> City : <%= infos[i].city %></h2>
+    <h4> Temperature : <%= infos[i].temperature %> | Humidity : <%= infos[i].humidity %>  | Pressure : <%= infos[i].pressure %> </h4>
+<% } %>
+-->
