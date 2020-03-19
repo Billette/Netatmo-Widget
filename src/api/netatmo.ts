@@ -1,6 +1,7 @@
 import {WeatherInfos} from '../infos'
 
-const accessToken = '5e68fe5297d026000b4bb38b|18bfb2ba462306cde78808fdd8567c0e';
+const accessToken = 'YOUR_ACCESS_TOKEN_HERE';
+
 const request = require('request-promise');
 
 const parisURL = "https://api.netatmo.com/api/getpublicdata?lat_ne=48.86471476180278&lon_ne=2.373046875&lat_sw=48.83579746243092&lon_sw=2.3291015625&filter=true"

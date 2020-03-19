@@ -21,7 +21,7 @@ app.set('views', __dirname + "/view")
 app.set('view engine', 'ejs');
 
 /** We use this boolean to switch from Demo mode to actual requests to API  */
-var demoMode: boolean = false
+var demoMode: boolean = true
 
 // We render the homepage when getting the URL
 app.get('/', (req: any, res: any) => {
