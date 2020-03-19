@@ -11,18 +11,30 @@
 <body>
     <div class="container-fluid">
         <nav class="navbar navbar-default flex-lg-nowrap shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0" href="/"> 
-            <img alt="logo-netatmo" src="https://upload.wikimedia.org/wikipedia/fr/e/e9/Logo_netatmo_2020.png" height="60px" width="145px"/> 
-        </a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-        <ul class="navbar-nav px-3">
-          <li class="nav-item text-nowrap">
-            <a class="nav-link" href="/">Sign out</a>
-          </li>
-        </ul>
+            <a class="navbar-brand col-md-3 col-lg-2 mr-0" href="/"> 
+                <img alt="logo-netatmo" src="https://upload.wikimedia.org/wikipedia/fr/e/e9/Logo_netatmo_2020.png" height="60px" width="145px"/> 
+            </a>
+            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="/">Sign out</a>
+                </li>
+            </ul>
         </nav>
 
-        <div class="row">
+        <div class="row explanation">
+            <div class="col">
+            </div>
+
+            <div class= "col-md-6 explanation-content rounded border border-warning"> 
+                <div class=" explanation-header">  Welcome to your Netatmo Weather Widget </div>
+                <div class=" explanation-text">  Start selecting a city to see the current weather </div>
+            </div>
+            <div class="col"></div>
+        </div>
+
+        <div class="row main">
+
             <nav class="col-md-2 bg-light sidebar rounded border border-primary">
                 <div class="sidebar-header rounded border border-primary">
                     <span class="sidebar-title ">Cities</span>
@@ -31,17 +43,91 @@
                     <% for (var i = 0; i < infos.length; i++) { %>
                         <li class="nav-item">
                             <a class="nav-link active">
-                                <button type="button" class="btn btn-default"><%= infos[i].city %></button>
+                                <button type="button" class="btn btn-default" onclick="display(
+                                    '<%= infos[i].city %>','<%= infos[i].temperature %>','<%= infos[i].humidity %>','<%= infos[i].pressure %>')" >
+                                    <%= infos[i].city %>
+                                </button>
                             </a>
                         </li>
                     <% } %>
                 </ul>
- 
-            </nav> 
+            </nav>
+
+            <div class="col col-md-8 display-infos rounded weather-bg">
+                <div class="overlay">
+                    <div id="city-selected" class="city-name">
+                        City
+                    </div>
+                    <div class="data-table">
+                        <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">Temperature </th>
+                                <th scope="col">Humidity</th>
+                                <th scope="col">Pressure</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr id="data-row-selected">
+                                <td id="data-temperature-selected"> - </td>
+                                <td id="data-humidity-selected"> - </td>
+                                <td id="data-pressure-selected"> - </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
 
+    <script type="text/javascript">
+        display = function(city, temperature, humidity, pressure) {
+            //console.log(city, temperature, humidity, pressure)
+
+            var cityElem = document.createElement("span");
+            cityElem.className = "city-name"
+            var node = document.createTextNode(city);
+            cityElem.appendChild(node)
+
+            var citySelected = document.getElementById('city-selected')
+            citySelected.textContent = ''
+            citySelected.appendChild(cityElem)
+
+
+            var temperatureSpan = document.createElement("span");
+            temperatureSpan.className = "span-temperature"
+            node = document.createTextNode(temperature + " °C");
+            temperatureSpan.appendChild(node)
+
+            var temperatureSelected = document.getElementById('data-temperature-selected')
+            temperatureSelected.textContent = ''
+            temperatureSelected.appendChild(temperatureSpan)
+
+
+            var humiditySpan = document.createElement("span");
+            humiditySpan.className = "span-humidity"
+            node = document.createTextNode(humidity + " %");
+            humiditySpan.appendChild(node)
+
+            var humiditySelected = document.getElementById('data-humidity-selected')
+            humiditySelected.textContent = ''
+            humiditySelected.appendChild(humiditySpan)
+
+
+            var pressureSpan = document.createElement("span");
+            pressureSpan.className = "span-pressure"
+            node = document.createTextNode(pressure + " mbar");
+            pressureSpan.appendChild(node)
+
+            var pressureSelected = document.getElementById('data-pressure-selected')
+            pressureSelected.textContent = ''
+            pressureSelected.appendChild(pressureSpan)
+
+        }
+    </script>
 </body>
 
 </html>

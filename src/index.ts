@@ -2,6 +2,7 @@ import express = require('express');
 import path = require('path');
 import {RequestHandler} from './api/netatmo'
 import {WeatherInfos} from './infos'
+import {demoAllInfos} from './demo'
 
 // We will use an Express App, on port 8080 by default
 const app = express()
@@ -19,23 +20,34 @@ app.use(express.json())
 app.set('views', __dirname + "/view")
 app.set('view engine', 'ejs');
 
+/** We use this boolean to switch from Demo mode to actual requests to API  */
+var demoMode: boolean = false
+
 // We render the homepage when getting the URL
 app.get('/', (req: any, res: any) => {
 
-    requestHandler.ParseData((err: Error, allInfos: WeatherInfos[]) => {
-        if(err)
-        {
-            console.error('Error while parsing data')
-            res.status(400).send('Data could not be loaded');
-        } else if(allInfos === []){
-            console.error("Unable to find any weather informations");
-            res.render('home.ejs', {infos: []})
-        } else {
-            res.render('home.ejs', {infos: allInfos})
-        }
-    })
+    if(demoMode === false) {
+        requestHandler.ParseData((err: Error, allInfos: WeatherInfos[]) => {
+            if(err)
+            {
+                console.error('Error while parsing data')
+                res.status(400).send('Data could not be loaded');
+            } else if(allInfos === []){
+                console.error("Unable to find any weather informations");
+                res.render('home.ejs', {infos: []})
+            } else {
+                res.render('home.ejs', {infos: allInfos})
+            }
+        })
+    } else {
+        var allInfos = demoAllInfos()
+        res.render('home.ejs', {infos: allInfos})
+    }
 })
 
+app.post('/', (req: any, res: any) => {
+
+})
 
 app.listen(port, (err: Error) => {
     if (err) {
