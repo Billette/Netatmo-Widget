@@ -1,0 +1,44 @@
+<script type="text/javascript">
+    display = function(city, temperature, humidity, pressure) {
+
+        var cityElem = document.createElement("span");
+        cityElem.className = "city-name"
+        var node = document.createTextNode(city);
+        cityElem.appendChild(node)
+
+        var citySelected = document.getElementById('city-selected')
+        citySelected.textContent = ''
+        citySelected.appendChild(cityElem)
+
+
+        var temperatureSpan = document.createElement("span");
+        temperatureSpan.className = "span-temperature"
+        node = document.createTextNode(temperature + " °C");
+        temperatureSpan.appendChild(node)
+
+        var temperatureSelected = document.getElementById('data-temperature-selected')
+        temperatureSelected.textContent = ''
+        temperatureSelected.appendChild(temperatureSpan)
+
+
+        var humiditySpan = document.createElement("span");
+        humiditySpan.className = "span-humidity"
+        node = document.createTextNode(humidity + " %");
+        humiditySpan.appendChild(node)
+
+        var humiditySelected = document.getElementById('data-humidity-selected')
+        humiditySelected.textContent = ''
+        humiditySelected.appendChild(humiditySpan)
+
+
+        var pressureSpan = document.createElement("span");
+        pressureSpan.className = "span-pressure"
+        node = document.createTextNode(pressure + " mbar");
+        pressureSpan.appendChild(node)
+
+        var pressureSelected = document.getElementById('data-pressure-selected')
+        pressureSelected.textContent = ''
+        pressureSelected.appendChild(pressureSpan)
+
+    }
+</script>
